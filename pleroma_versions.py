@@ -1,31 +1,15 @@
-import concurrent
-import concurrent.futures
 import json
 from datetime import datetime
-from typing import Tuple, List, Any, Sequence, Callable
+from typing import Tuple, List, Sequence
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 import fire
 import requests
-from alive_progress import alive_bar
 from requests import Response
 from rich import print
 
-
-class LongAsyncTaskExecutor(object):
-    def __init__(self, max_workers: int = 5):
-        self.max_workers = max_workers
-
-    def execute(self, items: Sequence[Any], item_func: Callable, item_func_args: Sequence[Any],
-                callback: Callable[[Any], Any]):
-        with alive_bar(len(items)) as bar:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                futures = [executor.submit(item_func, *item_func_args, item) for item in items]
-
-                for future in concurrent.futures.as_completed(futures):
-                    callback(future.result())
-                    bar()
+from executor.long_task_executor import LongAsyncTaskExecutor
 
 
 class PleromaVersions(object):
