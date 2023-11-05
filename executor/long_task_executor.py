@@ -14,7 +14,7 @@ class LongAsyncTaskExecutor(Generic[T]):
 
     def execute(self,
                 items: Sequence[T],
-                item_func: Callable[[*Any, T], V],
+                item_func: Callable[[..., T], V],
                 item_func_args: Sequence[Any],
                 callback: Callable[[V], Any]) -> None:
         with alive_bar(len(items)) as bar:
