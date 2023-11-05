@@ -2,3 +2,4 @@ fire
 requests
 rich
 alive_progress
+more_itertools
