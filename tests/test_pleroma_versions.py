@@ -30,7 +30,9 @@ class TestPleromaVersions(unittest.TestCase):
 
         # Assert that requests.get was called with the expected URL
         mock_get.assert_called_with(
-            f'https://git.pleroma.social/api/v4/projects/{self.project_id}/registry/repositories/{self.repository_id}/tags/?page=1')
+            f'https://git.pleroma.social/api/v4/projects/{self.project_id}'
+            f'/registry/repositories/{self.repository_id}/tags/?page=1'
+        )
 
         # Assert that the tags were correctly retrieved
         self.assertEqual(tags, [{"name": "tag1", "created_at": "2020-01-01T00:00:00Z"}])
