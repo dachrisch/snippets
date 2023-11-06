@@ -1,4 +1,3 @@
-import concurrent
 from concurrent import futures
 from typing import Sequence, Any, Callable, TypeVar, Generic
 
@@ -18,9 +17,9 @@ class LongAsyncTaskExecutor(Generic[T]):
                 item_func_args: Sequence[Any],
                 callback: Callable[[V], Any]) -> None:
         with alive_bar(len(items)) as bar:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            with futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
                 _futures = [executor.submit(item_func, *item_func_args, item) for item in items]
 
-                for future in concurrent.futures.as_completed(_futures):
+                for future in futures.as_completed(_futures):
                     callback(future.result())
                     bar()
