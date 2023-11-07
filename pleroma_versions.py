@@ -33,7 +33,7 @@ class PleromaVersions(object):
 
         print(
             f'Listing all tags between [{filter_after_date.strftime("%Y-%m-%d")}] '
-            f'and [{filter_before_date.strftime('%Y-%m-%d')}]')
+            f'and [{filter_before_date.strftime("%Y-%m-%d")}]')
 
         tags = self._get_all_tags()
         filtered_tags = self._get_all_tag_details(tags, filter_after_date, filter_before_date)
