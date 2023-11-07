@@ -58,7 +58,8 @@ class TestPleromaVersions(unittest.TestCase):
 
         # Run the method under test
         filter_after_date = datetime(2023, 9, 5, tzinfo=ZoneInfo('Europe/Berlin'))
-        filtered_tags = self.pv._get_all_tag_details(mock_tags, filter_after_date)
+        filter_before_date = datetime(2023, 10, 5, tzinfo=ZoneInfo('Europe/Berlin'))
+        filtered_tags = self.pv._get_all_tag_details(mock_tags, filter_after_date, filter_before_date)
 
         # Assert that the execute method was called on the executor
         mock_execute.assert_called()
