@@ -32,7 +32,7 @@ class PleromaVersions(object):
                 datetime.now()), time.max).astimezone(self.zone_info)
 
         print(
-            f'Listing all tags between [{filter_after_date.strftime('%Y-%m-%d')}] '
+            f'Listing all tags between [{filter_after_date.strftime("%Y-%m-%d")}] '
             f'and [{filter_before_date.strftime('%Y-%m-%d')}]')
 
         tags = self._get_all_tags()
